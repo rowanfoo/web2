@@ -1,0 +1,23 @@
+
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover table-cell-edit">
+
+  <thead>
+  <tr>
+        <th>code</th>
+        <th>title</th>
+        <th>date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let datas of  news">
+
+        <td> {{datas.code}}</td>
+        <td><a href="{{datas.link}}">{{datas.title}} </a></td>
+        <td> {{datas.date}}</td>
+
+
+  </tr>
+  </tbody>
+</table>

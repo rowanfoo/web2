@@ -1,0 +1,765 @@
+<p>hello-world-component works! (2)</p>
+
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Mining      <button class="btn btn-primary" (click)="goClick(miningcode)" > week </button>     &nbsp;<button class="btn btn-primary" (click)="oneyear(miningcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(miningcode)" >news </button></p>
+
+
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="table table-bordered table-striped table-hover table-cell-edit">
+
+        <thead>
+        <tr>
+          <th>codeX</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  mining">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <!--end-->
+
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Gold   <button class="btn btn-primary" (click)="goClick(goldcode)" > week </button>  &nbsp;<button class="btn btn-primary" (click)="oneyear(goldcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(goldcode)" >news </button> </p>
+      <!--      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover table-cell-edit">-->
+      <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+ <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  data">
+          <!--          <td> {{datas.code.substring(0, datas.code.indexOf(".")  ) }} : XX</td>-->
+          <!--          <td>-->
+          <!--            {{datas.code}}-->
+          <!--            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>-->
+          <!--          </td>-->
+
+
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <!--end-->
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Copper  <button class="btn btn-primary" (click)="goClick(coppercode)" > week </button>   &nbsp;<button class="btn btn-primary" (click)="oneyear(coppercode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(coppercode)" >news </button> </p>
+      <!--      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover table-cell-edit">-->
+      <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger3" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  copper">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+      <p>Uranium <button class="btn btn-primary" (click)="goClick(uraniumcode)" > week </button>  &nbsp;<button class="btn btn-primary" (click)="oneyear(uraniumcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(uraniumcode)" >news </button></p>
+      <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger3" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  uranium">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}
+              &nbsp; &nbsp;
+              <a  style="text-decorations:none; color:inherit;"
+                  href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                  target="_blank">day</a>
+              <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+            </a></td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+<!--          <td> {{datas.rsi}}</td>-->
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <!--end-->
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Nickel <button class="btn btn-primary" (click)="goClick(nickelcode)" > week </button>  &nbsp;<button class="btn btn-primary" (click)="oneyear(uraniumcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(uraniumcode)" >news </button> </p>
+      <!--      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover table-cell-edit">-->
+      <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger4" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  nickel">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <!--end-->
+
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Coal  <button class="btn btn-primary" (click)="goClick(coalcode)" > week </button>  &nbsp;<button class="btn btn-primary" (click)="oneyear(coalcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(coalcode)" >news </button> </p>
+      <!--      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover table-cell-edit">-->
+      <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger6" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  coal">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <!--end-->
+
+
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Lithium   <button class="btn btn-primary" (click)="goClick(lithiumcode)" > week </button>  &nbsp;<button class="btn btn-primary" (click)="oneyear(lithiumcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(lithiumcode)" >news </button></p>
+      <!--      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover table-cell-edit">-->
+      <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger7" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  lithium">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Graphite  <button class="btn btn-primary" (click)="goClick(graphitecode)" > week </button>  &nbsp;<button class="btn btn-primary" (click)="oneyear(graphitecode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(graphitecode)" >news </button> </p>
+      <!--      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped table-hover table-cell-edit">-->
+      <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger8" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  graphite">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Tungsten <button class="btn btn-primary" (click)="goClick(wishlistcode)" > week </button>   &nbsp;<button class="btn btn-primary" (click)="oneyear(wishlistcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(wishlistcode)" >news </button></p>
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger9" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  tungsten">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Vanadium <button class="btn btn-primary" (click)="goClick(vanadiumcode)" > week </button>   &nbsp;<button class="btn btn-primary" (click)="oneyear(vanadiumcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(vanadiumcode)" >news </button></p>
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger12" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  vanadium">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Wishlist <button class="btn btn-primary" (click)="goClick(wishlistcode)" > week </button>   &nbsp;<button class="btn btn-primary" (click)="oneyear(wishlistcode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(wishlistcode)" >news </button></p>
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger10" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  wishlist">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <div  style="border: 1px solid black">
+    <mat-card class="mat-elevation-z4">
+      <p>Portfolio  <button class="btn btn-primary" (click)="goClick(portfoliocode)" > week </button>  &nbsp;<button class="btn btn-primary" (click)="oneyear(portfoliocode)" >day</button> 	 &nbsp;  <button class="btn btn-primary" (click)="clicknews(portfoliocode)" >news </button></p>
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger11" class="table table-bordered table-striped table-hover table-cell-edit">
+        <thead>
+        <tr>
+          <th>code</th>
+          <th>name</th>
+          <th>marketcap</th>
+          <th>change</th>
+          <th>indicator</th>
+          <th>rsi</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let datas of  portfolio">
+          <td   *ngIf="datas.news.news.length > 0"   style="color: #0000ff;">  <a href="https://hotcopper.com.au/asx/{{datas.code.substring(0, datas.code.indexOf('.')  ) }}/announcements/" target="_blank">{{datas.code}} </a>  ***</td>
+          <td   *ngIf="datas.news.news.length == 0"   > {{datas.code}} </td>
+          <td>
+            <a  style="text-decorations:none; color:inherit;"
+                href="http://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=Stock&symb=AU%3A{{datas.code.substring(
+                0,datas.code.indexOf( '.' )
+                )}}&time=10&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=2&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=50&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&x=35&y=19&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11
+"
+                target="_blank"
+            >{{datas.name}}</a>
+            &nbsp; &nbsp;
+            <a  style="text-decorations:none; color:inherit;"
+                href="https://bigcharts.marketwatch.com/advchart/frames/frames.asp?show=&insttype=&symb=AU%3A{{datas.code.substring(
+        0,datas.code.indexOf( '.' )
+      )}}&x=0&y=0&time=8&startdate=1%2F4%2F1999&enddate=8%2F28%2F2018&freq=1&compidx=aaaaa%3A0&comptemptext=&comp=none&ma=3&maval=20&uf=0&lf=268435456&lf2=2&lf3=0&type=2&style=320&size=4&timeFrameToggle=false&compareToToggle=false&indicatorsToggle=false&chartStyleToggle=false&state=11"
+                target="_blank">day</a>
+            <button mat-stroked-button  color="primary"  (click)="dual(datas.code)">dual</button>
+          </td>
+
+          <td> {{datas.marketcap}}</td>
+          <td  [ngStyle]="{'background-color':datas.change < -5 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.change > 0"   style="color: #0000ff;">  {{datas.change}}</span>
+            <span   *ngIf="datas.change < 0"   style="color: #B10306;">  ({{datas.change}})</span>
+            <span   *ngIf="datas.change == 0"   style="color:black;">  {{datas.change}}</span>
+
+          </td>
+
+          <td> {{datas.indicator}}</td>
+          <td  [ngStyle]="{'background-color':datas.rsi < 30 ? '#FF0000' : '00FF00'}">
+            <span   *ngIf="datas.rsi < 30"   style="color: #0000ff;">  {{datas.rsi |  number : '1.1-1'}}</span>
+            <span   *ngIf="datas.rsi > 30"   style="color:black;">  {{datas.rsi |  number : '1.1-1'}}</span>
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-card-footer>
+        card footerng
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+  <!--end-->
+</div>
+<a href="/week">week </a>

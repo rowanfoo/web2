@@ -1,0 +1,14 @@
+<p>
+ Load time estimate:{{size}} sec vs  time pass {{timer}}sec
+</p>
+
+<button class="btn btn-primary" (click)="goClick()"> {{buttontext}}</button>
+nbsp;&nbsp;
+<button class="btn btn-primary" (click)="goClick2()"> {{buttontext2}}</button>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+  <div *ngFor="let imgof of bigcharts" style="border: 1px solid black">
+
+    <h4>{{imgof.code | uppercase}} || Year : {{imgof.year}} - {{imgof.title}} </h4>
+    &nbsp;&nbsp;&nbsp; <img alt="Embedded Image" [ngStyle]="{'width':width}" src="{{imgof.imagedata}}">
+  </div>
+</div>
